@@ -18,10 +18,12 @@ namespace TestIocPerformance
             UnityPerformanceTest unityPerformanceTest = new UnityPerformanceTest(NumberOfTests);
             MvvmLightPerformanceTest mvvmLightPerformanceTest = new MvvmLightPerformanceTest(NumberOfTests);
             AutofacPerformanceTest autofacPerformanceTest = new AutofacPerformanceTest(NumberOfTests);
+            TinyIocPerformanceTest tinyIocPerformanceTest = new TinyIocPerformanceTest(NumberOfTests);
 
             RunTests(unityPerformanceTest);
             RunTests(mvvmLightPerformanceTest);
             RunTests(autofacPerformanceTest);
+            RunTests(tinyIocPerformanceTest);
 
             Console.WriteLine("Press any key to exit.");
             Console.ReadLine();
@@ -31,7 +33,7 @@ namespace TestIocPerformance
         {
             try
             {
-                Console.WriteLine("Starting performance test");
+                Console.WriteLine("\nStarting performance test");
 
                 StopwatchObj = new Stopwatch();
                 StopwatchObj.Start();
@@ -55,7 +57,7 @@ namespace TestIocPerformance
                 StopwatchObj.Stop();
                 StopwatchObj = null;
 
-                Console.WriteLine("Ending performance test");
+                Console.WriteLine("Ending performance test\n");
             }           
         }       
     }

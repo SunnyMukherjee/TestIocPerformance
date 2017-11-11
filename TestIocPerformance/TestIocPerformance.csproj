@@ -92,7 +92,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Test.cs" />
+    <Compile Include="Tests\TinyIocPerformanceTest.cs" />
     <Compile Include="Tests\UnityPerformanceTest.cs" />
+    <Compile Include="TinyIoC.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
