@@ -19,8 +19,6 @@ namespace TestIocPerformance.Tests
 
         public void RunRegistrationTests()
         {
-            Console.WriteLine("Unity: Running {0} registration tests", _numberOfTests);
-
             for (int x = 0; x < _numberOfTests; x++)
             {
                 //_unityContainer.RegisterType<Test>();
@@ -30,8 +28,6 @@ namespace TestIocPerformance.Tests
 
         public void RunResolveTests()
         {
-            Console.WriteLine("Unity: Running {0} resolution tests", _numberOfTests);
-
             for (int x = 0; x < _numberOfTests; x++)
             {
                 _unityContainer.Resolve<ITest>(String.Format("Class{0}", x));

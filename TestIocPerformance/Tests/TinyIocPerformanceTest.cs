@@ -23,8 +23,6 @@ namespace TestIocPerformance.Tests
 
         void IPerformanceTest.RunRegistrationTests()
         {
-            Console.WriteLine("TinyIOC: Running {0} registration tests", _numberOfTests);
-
             for (int x = 0; x < _numberOfTests; x++)
             {
                 _container.Register<Test>(String.Format("Class{0}", x));
@@ -33,8 +31,6 @@ namespace TestIocPerformance.Tests
 
         void IPerformanceTest.RunResolveTests()
         {
-            Console.WriteLine("TinyIOC: Running {0} resolution tests", _numberOfTests);
-
             for (int x = 0; x < _numberOfTests; x++)
             {
                 _container.Resolve<Test>(String.Format("Class{0}", x));

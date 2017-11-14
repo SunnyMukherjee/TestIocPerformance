@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IPerformanceTest.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="Tests\AutofacPerformanceTest.cs" />
     <Compile Include="Tests\MvvmLightPerformanceTest.cs" />
     <Compile Include="Program.cs" />

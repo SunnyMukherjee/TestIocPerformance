@@ -14,39 +14,41 @@ namespace TestIocPerformance
         static void Main(string[] args)
         {
             NumberOfTests = 100;
+            StopwatchObj = new Stopwatch();
 
             UnityPerformanceTest unityPerformanceTest = new UnityPerformanceTest(NumberOfTests);
             MvvmLightPerformanceTest mvvmLightPerformanceTest = new MvvmLightPerformanceTest(NumberOfTests);
             AutofacPerformanceTest autofacPerformanceTest = new AutofacPerformanceTest(NumberOfTests);
             TinyIocPerformanceTest tinyIocPerformanceTest = new TinyIocPerformanceTest(NumberOfTests);
 
-            RunTests(unityPerformanceTest);
-            RunTests(mvvmLightPerformanceTest);
-            RunTests(autofacPerformanceTest);
-            RunTests(tinyIocPerformanceTest);
+            RunTests(unityPerformanceTest, "Unity");
+            RunTests(mvvmLightPerformanceTest, "MvvmLight");
+            RunTests(autofacPerformanceTest, "AutoFac");
+            RunTests(tinyIocPerformanceTest, "TinyIOC");
 
             Console.WriteLine("Press any key to exit.");
             Console.ReadLine();
         }
 
-        private static void RunTests(IPerformanceTest performanceTest)
+        private static void RunTests(IPerformanceTest performanceTest, string testName)
         {
             try
             {
-                Console.WriteLine("\nStarting performance test");
-
-                StopwatchObj = new Stopwatch();
+                Logger.WriteToScreen(testName, ConsoleColor.Cyan);
+                Logger.WriteToScreen("---------------------------", ConsoleColor.Cyan);
+                Logger.WriteToScreen(String.Format("Starting performance test"), ConsoleColor.Green);               
+                                
                 StopwatchObj.Start();
 
                 performanceTest.RunRegistrationTests();
 
-                Console.WriteLine("IOC Registration Time: {0} ms", StopwatchObj.Elapsed.Milliseconds.ToString());
+                Logger.WriteToScreen(String.Format("IOC Registration Time for {0} tests: {1} ms", NumberOfTests, StopwatchObj.Elapsed.Milliseconds.ToString()));
 
                 StopwatchObj.Restart();
 
                 performanceTest.RunResolveTests();
 
-                Console.WriteLine("IOC Resolution Time: {0} ms", StopwatchObj.Elapsed.Milliseconds.ToString());
+                Logger.WriteToScreen(String.Format("IOC Resolution Time for {0} tests: {1} ms", NumberOfTests, StopwatchObj.Elapsed.Milliseconds.ToString()));
             }
             catch (Exception exception)
             {
@@ -55,9 +57,8 @@ namespace TestIocPerformance
             finally
             {
                 StopwatchObj.Stop();
-                StopwatchObj = null;
 
-                Console.WriteLine("Ending performance test\n");
+                Logger.WriteToScreen("Ending performance test\n", ConsoleColor.Red);
             }           
         }       
     }

@@ -19,9 +19,7 @@ namespace TestIocPerformance.Tests
         }
 
         public void RunRegistrationTests()
-        {
-            Console.WriteLine("Autofac: Running {0} registration tests", _numberOfTests);
-            
+        {  
             for (int x = 0; x < _numberOfTests; x++)
             {
                 _builder.RegisterType<Test>().As<ITest>().Named<Test>(String.Format("Class{0}", x));
@@ -32,8 +30,6 @@ namespace TestIocPerformance.Tests
 
         public void RunResolveTests()
         {
-            Console.WriteLine("Autofac: Running {0} resolution tests", _numberOfTests);
-
             using (var scope = _container.BeginLifetimeScope())
             {
                 for (int x = 0; x < _numberOfTests; x++)
